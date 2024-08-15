@@ -51,7 +51,11 @@ module.exports = {
     },
   },
   // Add swiper plugin
-  plugins: [{ src: "~/plugins/nuxt-swiper-plugin.js", ssr: false }],
+  plugins: [
+    { src: "~/plugins/nuxt-swiper-plugin.js", ssr: false },
+    { src: "~/plugins/nuxt-elementui-plugin.js", ssr: false },
+    { src: "~/plugins/nuxt-qriously-plugin.js", ssr: false },
+  ],
   // Add swiper css
-  css: ["swiper/dist/css/swiper.css"],
+  css: ["swiper/dist/css/swiper.css", "element-ui/lib/theme-chalk/index.css"],
 };

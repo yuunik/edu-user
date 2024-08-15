@@ -11,12 +11,18 @@ importers:
       axios:
         specifier: 0.19.2
         version: 0.19.2
+      element-ui:
+        specifier: ^2.15.14
+        version: 2.15.14(vue@2.7.16)
       nuxt:
         specifier: ^2.0.0
         version: 2.18.1(consola@3.2.3)(vue@2.7.16)
       vue-awesome-swiper:
         specifier: ^3.1.3
         version: 3.1.3
+      vue-qriously:
+        specifier: ^1.1.1
+        version: 1.1.1(vue@2.7.16)
     devDependencies:
       babel-eslint:
         specifier: ^10.0.1
@@ -1371,6 +1377,9 @@ packages:
   async-each@1.0.6:
     resolution: {integrity: sha512-c646jH1avxr+aVpndVMeAfYw7wAa6idufrlN3LPA4PmKS0QEGp6PIC9nwz0WQkkvBGAMEki3pFdtxaF39J9vvg==}
 
+  async-validator@1.8.5:
+    resolution: {integrity: sha512-tXBM+1m056MAX0E8TL2iCjg8WvSyXu0Zc8LNtYqrVeyoL3+esHRZ4SieE9fKQyyU09uONjnMEjrNBMqT0mbvmA==}
+
   atob@2.1.2:
     resolution: {integrity: sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==}
     engines: {node: '>= 4.5.0'}
@@ -1401,6 +1410,9 @@ packages:
     peerDependencies:
       eslint: '>= 4.12.1'
 
+  babel-helper-vue-jsx-merge-props@2.0.3:
+    resolution: {integrity: sha512-gsLiKK7Qrb7zYJNgiXKpXblxbV5ffSwR0f5whkPAaBAR4fhi6bwRZxX9wBlIc5M/v8CCkXUbXZL4N/nSE97cqg==}
+
   babel-loader@8.3.0:
     resolution: {integrity: sha512-H8SvsMF+m9t15HNLMipppzkC+Y2Yq+v3SonZyU70RBL/h1gxPkH08Ot8pEE9Z4Kd+czyWJClmFS8qzIP9OZ04Q==}
     engines: {node: '>= 8.9'}
@@ -1422,6 +1434,9 @@ packages:
     resolution: {integrity: sha512-2R25rQZWP63nGwaAswvDazbPXfrM3HwVoBXK6HcqeKrSrL/JqcC/rDcf95l4r7LXLyxDXc8uQDa064GubtCABg==}
     peerDependencies:
       '@babel/core': ^7.4.0 || ^8.0.0-0 <8.0.0
+
+  babel-runtime@6.26.0:
+    resolution: {integrity: sha512-ITKNuq2wKlW1fJg9sSW52eepoYgZBggvOAHC0u/CYu/qxQ9EVzThCgR69BnSXLHjy2f7SY5zaQ4yt7H9ZVxY2g==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -1920,6 +1935,10 @@ packages:
   core-js-compat@3.38.0:
     resolution: {integrity: sha512-75LAicdLa4OJVwFxFbQR3NdnZjNgX6ILpVcVzcC4T2smerB5lELMrJQQQoWV6TiuC/vlaFqgU2tKQx9w5s0e0A==}
 
+  core-js@2.6.12:
+    resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
+    deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+
   core-js@3.38.0:
     resolution: {integrity: sha512-XPpwqEodRljce9KswjZShh95qJ1URisBeKCjUdq27YdenkslVe7OO0ZJhlYXAChW7OhXaRLl8AAba7IBfoIHug==}
 
@@ -2138,6 +2157,10 @@ packages:
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
+  deepmerge@1.5.2:
+    resolution: {integrity: sha512-95k0GDqvBjZavkuvzx/YqVLv/6YYa17fz6ILMSf7neqQITCPbnfEnQvEgMPNjH4kgobe7+WIL0yJEHku+H3qtQ==}
+    engines: {node: '>=0.10.0'}
+
   deepmerge@4.3.1:
     resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
     engines: {node: '>=0.10.0'}
@@ -2255,6 +2278,11 @@ packages:
 
   electron-to-chromium@1.5.6:
     resolution: {integrity: sha512-jwXWsM5RPf6j9dPYzaorcBSUg6AiqocPEyMpkchkvntaH9HGfOOMZwxMJjDY/XEs3T5dM7uyH1VhRMkqUU9qVw==}
+
+  element-ui@2.15.14:
+    resolution: {integrity: sha512-2v9fHL0ZGINotOlRIAJD5YuVB8V7WKxrE9Qy7dXhRipa035+kF7WuU/z+tEmLVPBcJ0zt8mOu1DKpWcVzBK8IA==}
+    peerDependencies:
+      vue: ^2.5.17
 
   elliptic@6.5.6:
     resolution: {integrity: sha512-mpzdtpeCLuS3BmE3pO3Cpp5bbjlOPY2Q0PgoF+Od1XZrHLYI28Xe3ossCmYCQt11FQKEYd9+PF8jymTvtWJSHQ==}
@@ -3478,6 +3506,9 @@ packages:
     resolution: {integrity: sha512-DlL+XwOy3NxAQ8xuC0okPgK46iuVNAK01YN7RueYBqqFeGsBjV9XmCAzAdgt+667bCl5kPh9EqKKDwnaPG1I7A==}
     engines: {node: '>=10'}
 
+  normalize-wheel@1.0.1:
+    resolution: {integrity: sha512-1OnlAPZ3zgrk8B91HyRj+eVv+kS5u+Z0SCsak6Xil/kmgEia50ga7zfkumayonZrImffAxPU/5WcyGhzetHNPA==}
+
   npm-run-path@4.0.1:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}
     engines: {node: '>=8'}
@@ -4405,6 +4436,9 @@ packages:
   regenerate@1.4.2:
     resolution: {integrity: sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==}
 
+  regenerator-runtime@0.11.1:
+    resolution: {integrity: sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==}
+
   regenerator-runtime@0.14.1:
     resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
 
@@ -4456,6 +4490,9 @@ packages:
   require-uncached@1.0.3:
     resolution: {integrity: sha512-Xct+41K3twrbBHdxAgMoOS+cNcoqIjfM2/VxBF4LL2hVph7YsF8VSKyQ3BDFZwEVbok9yeDl2le/qo0S77WG2w==}
     engines: {node: '>=0.10.0'}
+
+  resize-observer-polyfill@1.5.1:
+    resolution: {integrity: sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==}
 
   resolve-from@1.0.1:
     resolution: {integrity: sha512-kT10v4dhrlLNcnO084hEjvXCI1wUG9qZLoz2RogxqDQQYy7IxjI/iMUkOtQTNEh6rzHxvdQWHsJyel1pKOVCxg==}
@@ -4929,6 +4966,10 @@ packages:
     peerDependencies:
       webpack: ^4.27.0 || ^5.0.0
 
+  throttle-debounce@1.1.0:
+    resolution: {integrity: sha512-XH8UiPCQcWNuk2LYePibW/4qL97+ZQ1AN3FNXwZRBNPPowo/NRU5fAlDCSNBJIYCKbioZfuYtMhG4quqoJhVzg==}
+    engines: {node: '>=4'}
+
   through2@2.0.5:
     resolution: {integrity: sha512-/mrRod8xqpA+IHSLyGCQ2s8SPHiCDEeQJSep1jqLYeEUClOFG2Qsh+4FU6G9VeqpZnGW/Su8LQGc4YKni5rYSQ==}
 
@@ -5199,6 +5240,12 @@ packages:
 
   vue-no-ssr@1.1.1:
     resolution: {integrity: sha512-ZMjqRpWabMPqPc7gIrG0Nw6vRf1+itwf0Itft7LbMXs2g3Zs/NFmevjZGN1x7K3Q95GmIjWbQZTVerxiBxI+0g==}
+
+  vue-qriously@1.1.1:
+    resolution: {integrity: sha512-AlP8A7LpXWF5lyJsQYxtPE3+qlRqIBX9CP3cn0Oiov9QFNovp+3z7VJLqHRQh6poXO5K2RbZwAiY3hsVVlQbRg==}
+    deprecated: This package is no longer maintained
+    peerDependencies:
+      vue: ^2.1.10
 
   vue-router@3.6.5:
     resolution: {integrity: sha512-VYXZQLtjuvKxxcshuRAwjHnciqZVoXAjTjcqBTz4rKc8qih9g9pI3hbDjmqXaHdgL3v8pV6P8Z335XvHzESxLQ==}
@@ -7370,6 +7417,10 @@ snapshots:
   async-each@1.0.6:
     optional: true
 
+  async-validator@1.8.5:
+    dependencies:
+      babel-runtime: 6.26.0
+
   atob@2.1.2: {}
 
   autoprefixer@10.4.20(postcss@8.4.41):
@@ -7410,6 +7461,8 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  babel-helper-vue-jsx-merge-props@2.0.3: {}
+
   babel-loader@8.3.0(@babel/core@7.25.2)(webpack@4.47.0):
     dependencies:
       '@babel/core': 7.25.2
@@ -7442,6 +7495,11 @@ snapshots:
       '@babel/helper-define-polyfill-provider': 0.6.2(@babel/core@7.25.2)
     transitivePeerDependencies:
       - supports-color
+
+  babel-runtime@6.26.0:
+    dependencies:
+      core-js: 2.6.12
+      regenerator-runtime: 0.11.1
 
   balanced-match@1.0.2: {}
 
@@ -7884,6 +7942,8 @@ snapshots:
     dependencies:
       browserslist: 4.23.3
 
+  core-js@2.6.12: {}
+
   core-js@3.38.0: {}
 
   core-util-is@1.0.3: {}
@@ -8167,6 +8227,8 @@ snapshots:
 
   deep-is@0.1.4: {}
 
+  deepmerge@1.5.2: {}
+
   deepmerge@4.3.1: {}
 
   define-data-property@1.1.4:
@@ -8292,6 +8354,16 @@ snapshots:
   ee-first@1.1.1: {}
 
   electron-to-chromium@1.5.6: {}
+
+  element-ui@2.15.14(vue@2.7.16):
+    dependencies:
+      async-validator: 1.8.5
+      babel-helper-vue-jsx-merge-props: 2.0.3
+      deepmerge: 1.5.2
+      normalize-wheel: 1.0.1
+      resize-observer-polyfill: 1.5.1
+      throttle-debounce: 1.1.0
+      vue: 2.7.16
 
   elliptic@6.5.6:
     dependencies:
@@ -9705,6 +9777,8 @@ snapshots:
 
   normalize-url@6.1.0: {}
 
+  normalize-wheel@1.0.1: {}
+
   npm-run-path@4.0.1:
     dependencies:
       path-key: 3.1.1
@@ -10747,6 +10821,8 @@ snapshots:
 
   regenerate@1.4.2: {}
 
+  regenerator-runtime@0.11.1: {}
+
   regenerator-runtime@0.14.1: {}
 
   regenerator-transform@0.15.2:
@@ -10803,6 +10879,8 @@ snapshots:
     dependencies:
       caller-path: 0.1.0
       resolve-from: 1.0.1
+
+  resize-observer-polyfill@1.5.1: {}
 
   resolve-from@1.0.1: {}
 
@@ -11344,6 +11422,8 @@ snapshots:
       schema-utils: 3.3.0
       webpack: 4.47.0
 
+  throttle-debounce@1.1.0: {}
+
   through2@2.0.5:
     dependencies:
       readable-stream: 2.3.8
@@ -11648,6 +11728,10 @@ snapshots:
       deepmerge: 4.3.1
 
   vue-no-ssr@1.1.1: {}
+
+  vue-qriously@1.1.1(vue@2.7.16):
+    dependencies:
+      vue: 2.7.16
 
   vue-router@3.6.5(vue@2.7.16):
     dependencies:
