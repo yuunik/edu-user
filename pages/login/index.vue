@@ -37,10 +37,12 @@ export default {
         <el-form-item class="btn-group">
           <button type="reset" class="reset-btn">reset</button>
           <button type="submit" class="submit-btn">submit</button>
-          <div class="register-link">
-            <strong class="register-text">注册账号</strong>
-            <i class="el-icon-d-arrow-right register-icon" />
-          </div>
+          <el-tooltip content="注册" placement="right" effect="light">
+            <i
+              class="el-icon-d-arrow-right register-icon"
+              @click="$router.push('/register')"
+            />
+          </el-tooltip>
         </el-form-item>
       </el-form>
     </main>
@@ -99,17 +101,9 @@ export default {
   font: italic bold 18px "HarmonyOS Sans", sans-serif;
   color: #34495e;
 }
-.register-link {
-  display: inline-block;
-  height: 40px;
-  line-height: 40px;
-}
-.register-text {
-  font: 16px "HarmonyOS Sans", sans-serif;
-  color: #34495e;
-}
 .register-icon {
   height: 40px;
+  cursor: pointer;
 }
 .register-icon {
   font-size: 30px;
