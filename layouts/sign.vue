@@ -37,8 +37,6 @@
   margin: 30px;
 }
 .sign-form {
-  width: 28%;
-  height: 50%;
   background-color: #ffffff;
   box-shadow: 0 0 20px rgb(227, 227, 227);
   margin-right: 150px;

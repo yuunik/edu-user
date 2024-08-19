@@ -58,4 +58,8 @@ module.exports = {
   ],
   // Add swiper css
   css: ["swiper/dist/css/swiper.css", "element-ui/lib/theme-chalk/index.css"],
+  server: {
+    host: "192.168.28.102",
+    port: 6060,
+  },
 };
