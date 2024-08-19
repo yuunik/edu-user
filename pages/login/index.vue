@@ -39,7 +39,7 @@ export default {
 
 <style scoped>
 .login-form {
-  width: 560px;
+  width: 450px;
   height: 325px;
 }
 /* 输入框边框颜色 */

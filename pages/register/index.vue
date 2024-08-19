@@ -60,9 +60,9 @@ export default {
       let count = 60;
       this.sendCodeBtnDisabled = true;
       const timerId = setInterval(() => {
-        this.sendCodeText = `${count}秒后重发`;
         count--;
-        if (count < 0) {
+        this.sendCodeText = `${count}秒后重发`;
+        if (count < 1) {
           clearInterval(timerId);
           this.sendCodeBtnDisabled = false;
           this.sendCodeText = "获取验证码";
@@ -75,15 +75,17 @@ export default {
 
 <style scoped>
 .register-form {
-  width: 560px;
+  width: 450px;
   height: 450px;
 }
+/* 修改input获取焦点时的边框颜色 */
 ::v-deep .el-input__inner {
   border-color: #dcdfe6;
 }
 ::v-deep .el-input__inner:focus {
   border-color: #41b883;
 }
+/* 修改按键悬浮时的样式 */
 ::v-deep .el-button:hover {
   background-color: transparent !important;
   color: inherit !important;
