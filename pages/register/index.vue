@@ -1,11 +1,19 @@
 <template>
-  <LrForm class="register-form" submitText="register">
+  <LrForm class="register-form" submitText="register" @submit="onRegisterUser">
     <template #default>
       <el-form-item label="用户名" label-width="60px">
-        <el-input placeholder="请输入用户名" prefix-icon="el-icon-user" />
+        <el-input
+          placeholder="请输入用户名"
+          prefix-icon="el-icon-user"
+          v-model="registerInfo.nickname"
+        />
       </el-form-item>
       <el-form-item label="手机号" label-width="60px">
-        <el-input placeholder="请输入手机号" prefix-icon="el-icon-mobile" />
+        <el-input
+          placeholder="请输入手机号"
+          prefix-icon="el-icon-mobile"
+          v-model="registerInfo.mobile"
+        />
       </el-form-item>
       <el-form-item label="密码" label-width="60px">
         <el-input
@@ -13,12 +21,14 @@
           placeholder="请输入密码"
           show-password
           prefix-icon="el-icon-lock"
+          v-model="registerInfo.password"
         />
       </el-form-item>
       <el-form-item label="验证码" label-width="60px">
         <el-input
           placeholder="请输入验证码"
           prefix-icon="el-icon-chat-dot-square"
+          v-model="registerInfo.code"
         >
           <template #append>
             <el-button
@@ -37,6 +47,9 @@
 
 <script>
 import LrForm from "~/components/LrForm";
+import { sendSmsApi } from "~/apis/sms";
+import { registerUserApi } from "../../apis/login";
+
 export default {
   layout: "sign",
   components: {
@@ -46,14 +59,29 @@ export default {
     return {
       sendCodeText: "获取验证码",
       sendCodeBtnDisabled: false,
+      // 用户注册信息
+      registerInfo: {
+        nickname: "",
+        mobile: "",
+        password: "",
+        code: "",
+      },
     };
   },
   methods: {
-    sendCode() {
+    // 发送验证码
+    async sendCode() {
       // 开始倒计时
       this.timeCount();
       // 发送验证码
-      console.log("发送验证码");
+      const { code } = await sendSmsApi(this.registerInfo.mobile);
+      if (code === 20000) {
+        // 提示信息
+        this.$message.success("验证码发送成功");
+      } else {
+        // 提示信息
+        this.$message.error("验证码发送失败");
+      }
     },
     // 倒计时
     timeCount() {
@@ -68,6 +96,19 @@ export default {
           this.sendCodeText = "获取验证码";
         }
       }, 1000);
+    },
+    // 注册用户
+    async onRegisterUser() {
+      const { code, data } = await registerUserApi(this.registerInfo);
+      if (code === 20000) {
+        // 提示信息
+        this.$message.success("注册成功");
+        // 跳转到登录页面
+        this.$router.push("/login");
+      } else {
+        // 提示信息
+        this.$message.error(data.message);
+      }
     },
   },
 };

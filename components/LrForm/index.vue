@@ -7,14 +7,7 @@ export default {
       default: "submit",
     },
   },
-  data() {
-    return {
-      loginParams: {
-        username: "",
-        password: "",
-      },
-    };
-  },
+  emits: ["submit"],
 };
 </script>
 
@@ -29,7 +22,13 @@ export default {
         <slot />
         <el-form-item class="btn-group">
           <button type="reset" class="reset-btn">reset</button>
-          <button type="submit" class="submit-btn">{{ submitText }}</button>
+          <button
+            type="submit"
+            class="submit-btn"
+            @click.prevent="$emit('submit')"
+          >
+            {{ submitText }}
+          </button>
           <el-tooltip
             :content="submitText === 'register' ? '登录' : '注册'"
             placement="right"
