@@ -10,9 +10,10 @@ export default {
   data() {
     return {
       loginInfo: {
-        nickname: "",
         password: "",
       },
+      // 用户名或手机号暂存信息
+      regData: "",
       // 用户令牌
       token: "",
     };
@@ -20,6 +21,15 @@ export default {
   methods: {
     // 用户登录
     async onLogin() {
+      // 判断是否为手机号
+      const phoneNumber = /^1[3456789]\d{9}$/;
+      if (phoneNumber.test(this.regData)) {
+        // 手机号登录, 存放手机号信息
+        this.loginInfo.mobile = this.regData;
+      } else {
+        // 用户名登录, 存放用户名信息
+        this.loginInfo.nickname = this.regData;
+      }
       const { code, data } = await loginApi(this.loginInfo);
       if (code === 20000) {
         // 保存用户 token
@@ -31,7 +41,7 @@ export default {
         // 跳转到首页
         this.$router.push("/");
       } else {
-        this.$message.error(data.message);
+        this.$message.error("登录失败");
       }
     },
   },
@@ -45,7 +55,7 @@ export default {
         <el-input
           placeholder="请输入用户名/手机号"
           prefix-icon="el-icon-user"
-          v-model="loginInfo.nickname"
+          v-model="regData"
         />
       </el-form-item>
       <el-form-item label="密码" label-width="50px">
