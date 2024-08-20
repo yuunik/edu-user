@@ -10,10 +10,11 @@ export const registerUserApi = (registerData) =>
   });
 
 // 用户登录
-export const loginApi = () =>
+export const loginApi = (loginData) =>
   request({
     url: "/ucenterservice/member/loginUser",
     method: "POST",
+    data: loginData,
   });
 
 // 获取用户信息
