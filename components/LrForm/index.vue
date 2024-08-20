@@ -4,7 +4,7 @@ export default {
   props: {
     submitText: {
       type: String,
-      default: "submit",
+      default: "登录",
     },
   },
   emits: ["submit"],
@@ -21,16 +21,16 @@ export default {
       <el-form>
         <slot />
         <el-form-item class="btn-group">
-          <button type="reset" class="reset-btn">reset</button>
+          <button type="reset" class="reset-btn">重置</button>
           <button
             type="submit"
             class="submit-btn"
             @click.prevent="$emit('submit')"
           >
-            {{ submitText }}
+            {{ submitText === "register" ? "注册" : "登录" }}
           </button>
           <el-tooltip
-            :content="submitText === 'register' ? '登录' : '注册'"
+            :content="submitText === 'register' ? '注册' : '登录'"
             placement="right"
             effect="light"
           >
