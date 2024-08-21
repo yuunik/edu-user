@@ -1,5 +1,6 @@
 // 封装axios请求
 import axios from "axios";
+import Cookies from "js-cookie";
 
 // 项目基地址
 const baseURL = "http://192.168.28.102:1997";
@@ -13,7 +14,11 @@ const request = axios.create({
 // 请求拦截器
 request.interceptors.request.use(
   (config) => {
-    // 在发送请求之前做某事
+    // 若 cookie 中有 token，则在请求头中添加 token
+    const token = Cookies.get("token");
+    if (token) {
+      config.headers["token"] = token;
+    }
     return config;
   },
   (error) => {

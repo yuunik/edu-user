@@ -20,6 +20,6 @@ export const loginApi = (loginData) =>
 // 获取用户信息
 export const getUserInfoApi = () =>
   request({
-    url: "/ucenterservice/user/getUserInfo",
+    url: "/ucenterservice/member/getUserInfo",
     method: "GET",
   });

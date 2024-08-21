@@ -1,6 +1,6 @@
 <script>
 import LrForm from "~/components/LrForm";
-import { loginApi } from "~/apis/login";
+import { mapActions } from "vuex";
 
 export default {
   layout: "sign",
@@ -19,6 +19,8 @@ export default {
     };
   },
   methods: {
+    // 映射 userStore 的actions
+    ...mapActions("userStore", ["login"]),
     // 用户登录
     async onLogin() {
       // 判断是否为手机号
@@ -30,19 +32,12 @@ export default {
         // 用户名登录, 存放用户名信息
         this.loginInfo.nickname = this.regData;
       }
-      const { code, data } = await loginApi(this.loginInfo);
-      if (code === 20000) {
-        // 保存用户 token
-        this.token = data.token;
-        // 用户 token 本地持久化
-        localStorage.setItem("token", this.token);
-        // 提示信息
-        this.$message.success("登录成功");
-        // 跳转到首页
-        this.$router.push("/");
-      } else {
-        this.$message.error("登录失败");
-      }
+      // 触发异步action
+      await this.login(this.loginInfo);
+      // 提示信息
+      this.$message.success("登录成功");
+      // 路由跳转
+      this.$router.push("/");
     },
   },
 };
