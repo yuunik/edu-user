@@ -27,9 +27,9 @@ const userStore = {
         const res = await getUserInfoApi();
         if (res.code === 20000) {
           // 设置用户信息
-          context.commit("setUserInfo", data.userInfo);
+          context.commit("setUserInfo", res.data.userInfo);
           // 存入 cookie
-          Cookies.set("user_info", data.userInfo, {
+          Cookies.set("user_info", res.data.userInfo, {
             domain: "localhost",
             expires: 7,
           });

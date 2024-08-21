@@ -28,7 +28,7 @@
           </ul>
           <!-- / nav -->
           <ul class="h-r-login">
-            <li id="no-login">
+            <li v-if="!userInfo.id" id="no-login">
               <a href="/login" title="登录">
                 <em class="icon18 login-icon">&nbsp;</em>
                 <span class="vam ml5">登录</span>
@@ -38,29 +38,31 @@
                 <span class="vam ml5">注册</span>
               </a>
             </li>
-            <li class="mr10 undis" id="is-login-one">
-              <a href="#" title="消息" id="headerMsgCountId">
+            <li v-if="userInfo.id" id="is-login-one" class="mr10">
+              <a id="headerMsgCountId" href="#" title="消息">
                 <em class="icon18 news-icon">&nbsp;</em>
               </a>
               <q class="red-point" style="display: none">&nbsp;</q>
             </li>
-            <li class="h-r-user undis" id="is-login-two">
-              <a href="#" title>
+            <li v-if="userInfo.id" id="is-login-two" class="h-r-user">
+              <a href="/ucenter" title>
                 <img
-                  src="~/assets/img/avatar-boy.gif"
+                  :src="userInfo.avatar"
                   width="30"
                   height="30"
                   class="vam picImg"
-                  alt
+                  alt="用户头像"
                 />
-                <span class="vam disIb" id="userName"></span>
+                <span id="userName" class="vam disIb">{{
+                  userInfo.nickname
+                }}</span>
               </a>
               <a
-                href="javascript:void(0)"
+                href="javascript:void(0);"
                 title="退出"
-                onclick="exit();"
+                @click="logout()"
                 class="ml5"
-                >退出</a
+                >退 出</a
               >
             </li>
             <!-- /未登录显示第1 li；登录后显示第2，3 li -->
@@ -147,6 +149,17 @@ import "~/assets/css/reset.css";
 import "~/assets/css/theme.css";
 import "~/assets/css/global.css";
 import "~/assets/css/web.css";
+import { mapState } from "vuex";
 
-export default {};
+export default {
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapState("userStore", ["userInfo", "token"]),
+  },
+  methods: {
+    logout() {},
+  },
+};
 </script>
