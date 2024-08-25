@@ -103,7 +103,7 @@
           <ul class="of flink-list">
             <li>
               <a href="http://www.atguigu.com/" title="尚硅谷" target="_blank"
-                >尚硅
+                >尚硅谷
               </a>
             </li>
           </ul>
@@ -149,16 +149,29 @@ import "~/assets/css/reset.css";
 import "~/assets/css/theme.css";
 import "~/assets/css/global.css";
 import "~/assets/css/web.css";
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
+import Cookies from "js-cookie";
 
 export default {
   data() {
     return {};
   },
+  created() {
+    // 获取路劲参数 token
+    const token = this.$route.query.token;
+    if (token) {
+      // 路劲中有 token，将 token 存入 cookie 中
+      Cookies.set("token", token, { domain: "localhost", expires: 7 });
+      // 调用 getUserInfoByToken 方法，获取用户信息
+      this.getUserInfoByToken();
+    }
+  },
   computed: {
     ...mapState("userStore", ["userInfo", "token"]),
   },
   methods: {
+    ...mapActions("userStore", ["getUserInfoByToken"]),
+    // 退出登录
     logout() {},
   },
 };

@@ -2,12 +2,21 @@
 export default {
   layout: "sign",
   props: {
+    // 登录或注册
     submitText: {
       type: String,
       default: "登录",
     },
+    // 是否是其他登录方式
+    isOtherLogin: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ["submit"],
+  data() {
+    return {};
+  },
 };
 </script>
 
@@ -44,6 +53,7 @@ export default {
             />
           </el-tooltip>
         </el-form-item>
+        <slot name="third-party-login" />
       </el-form>
     </main>
   </div>

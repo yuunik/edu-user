@@ -23,3 +23,10 @@ export const getUserInfoApi = () =>
     url: "/ucenterservice/member/getUserInfo",
     method: "GET",
   });
+
+// 微信登录
+export const wechatLoginApi = () =>
+  request({
+    url: "/api/ucenter/wx/getQRCode",
+    method: "GET",
+  });

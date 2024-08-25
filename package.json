@@ -13,6 +13,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "ant-design-vue": "^1.7.8",
     "axios": "0.19.2",
     "element-ui": "^2.15.14",
     "js-cookie": "^3.0.5",

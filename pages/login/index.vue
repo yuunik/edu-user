@@ -1,6 +1,7 @@
 <script>
 import LrForm from "~/components/LrForm";
 import { mapActions } from "vuex";
+import { wechatLoginApi } from "~/apis/login";
 
 export default {
   layout: "sign",
@@ -39,6 +40,15 @@ export default {
       // 路由跳转
       this.$router.push("/");
     },
+    // 微信登录
+    async onLoginByWechat() {
+      // 调用接口, 获取微信登录二维码
+      const { code, data } = await wechatLoginApi();
+      if (code === 20000) {
+        // 显示二维码
+        window.location.href = data.QRCodeUrl;
+      }
+    },
   },
 };
 </script>
@@ -63,13 +73,38 @@ export default {
         />
       </el-form-item>
     </template>
+    <template #third-party-login>
+      <a-divider>第三方登录</a-divider>
+      <div class="third-party-login">
+        <a-icon type="qq" class="login-qq" />
+        <a-divider type="vertical" />
+        <a-icon type="wechat" class="login-wechat" @click="onLoginByWechat" />
+      </div>
+    </template>
   </LrForm>
 </template>
 
 <style scoped>
 .login-form {
   width: 450px;
-  height: 325px;
+  height: 400px;
+}
+.third-party-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-qq {
+  color: #41b883;
+  font-size: 25px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.login-wechat {
+  color: #2db7f5;
+  font-size: 25px;
+  margin-left: 10px;
+  cursor: pointer;
 }
 /* 输入框边框颜色 */
 ::v-deep .el-input__inner {

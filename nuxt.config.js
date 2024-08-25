@@ -53,9 +53,14 @@ module.exports = {
     { src: "~/plugins/nuxt-swiper-plugin.js", ssr: false },
     { src: "~/plugins/nuxt-elementui-plugin.js", ssr: false },
     { src: "~/plugins/nuxt-qriously-plugin.js", ssr: false },
+    { src: "~/plugins/nuxt-antD-plugin.js", ssr: false },
   ],
   // Add swiper css
-  css: ["swiper/dist/css/swiper.css", "element-ui/lib/theme-chalk/index.css"],
+  css: [
+    "swiper/dist/css/swiper.css",
+    "element-ui/lib/theme-chalk/index.css",
+    "ant-design-vue/dist/antd.css",
+  ],
   server: {
     host: "0.0.0.0",
     port: 6060,

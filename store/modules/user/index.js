@@ -36,15 +36,24 @@ const userStore = {
         }
       }
     },
+    // 根据用户令牌获取用户信息
+    async getUserInfoByToken(context) {
+      const { code, data } = await getUserInfoApi();
+      if (code === 20000) {
+        // 设置用户信息
+        context.commit("setUserInfo", data.userInfo);
+        // 存入 cookie
+        Cookies.set("user_info", data.userInfo, {
+          domain: "localhost",
+          expires: 7,
+        });
+      }
+    },
   },
   mutations: {
     // 设置用户信息
     setUserInfo(state, userInfo) {
       state.userInfo = userInfo;
-    },
-    // 获取用户信息
-    getUserInfo(state) {
-      return state.userInfo;
     },
     // 移除用户信息
     removeUserInfo(state) {
@@ -54,12 +63,18 @@ const userStore = {
     setToken(state, token) {
       state.token = token;
     },
+    removeToken(state) {
+      state.token = "";
+    },
+  },
+  getters: {
+    // 获取用户信息
+    getUserInfo(state) {
+      return state.userInfo;
+    },
     // 获取用户令牌
     getToken(state) {
       return state.token;
-    },
-    removeToken(state) {
-      state.token = "";
     },
   },
 };
