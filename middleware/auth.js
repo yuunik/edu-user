@@ -7,8 +7,10 @@ const auth = ({ route, redirect, store, app, isClient }) => {
   // 获取当前路径
   const path = route.path;
   if (path !== "/login") {
+    console.log("1111111111");
     // 如果用户令牌不存在，重定向到登录页面
     if (!token) {
+      console.log("22222222222222222");
       return redirect("/login");
     }
   }

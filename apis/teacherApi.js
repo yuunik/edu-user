@@ -20,3 +20,16 @@ export const pageTeacherApi = (params) =>
     url: `/eduservice/front-end/teacher/pageTeacherInfo/${params.current}/${params.pageSize}`,
     method: "get",
   });
+
+/**
+ * 根据讲师id查询讲师信息
+ * @param {number} params - 讲师id
+ * @returns {Promise<Object>}
+ * @returns {teacher} .teacher - 讲师详情
+ * @returns {courseList} .courseList - 讲师授课课程列表
+ */
+export const getTeacherInfoApi = (params) =>
+  request({
+    url: `/eduservice/front-end/teacher/getTeacherInfo/${params}`,
+    method: "get",
+  });

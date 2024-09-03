@@ -31,27 +31,29 @@
                 <section class="i-teach-wrap">
                   <div class="i-teach-pic">
                     <a
-                      :href="`/teacher/${teacher.id}`"
+                      href="#"
                       :title="teacher.name"
                       target="_blank"
+                      @click.prevent="$router.push(`/teacher/${teacher.id}`)"
                     >
                       <img :src="teacher.avatar" alt="讲师头像" />
                     </a>
                   </div>
                   <div class="mt10 hLh30 txtOf tac">
                     <a
-                      :href="`/teacher/${teacher.id}`"
+                      href="#"
                       :title="teacher.name"
                       target="_blank"
                       class="fsize18 c-666"
+                      @click.prevent="$router.push(`/teacher/${teacher.id}`)"
                       >{{ teacher.name }}</a
                     >
                   </div>
                   <div class="hLh30 txtOf tac">
-                    <span class="fsize14 c-999">{{ teacher.intro }}</span>
+                    <span class="fsize14 c-999">{{ teacher.career }}</span>
                   </div>
                   <div class="mt15 i-q-txt">
-                    <p class="c-999 f-fA">{{ teacher.career }}</p>
+                    <p class="c-999 f-fA">{{ teacher.intro }}</p>
                   </div>
                 </section>
               </li>
