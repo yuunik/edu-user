@@ -1,7 +1,7 @@
 <script>
 import LrForm from "~/components/LrForm";
 import { mapActions } from "vuex";
-import { wechatLoginApi } from "~/apis/login";
+import { wechatLoginApi } from "~/apis/loginApi";
 
 export default {
   layout: "sign",

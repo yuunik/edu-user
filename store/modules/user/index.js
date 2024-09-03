@@ -1,5 +1,5 @@
 // 用户模块
-import { getUserInfoApi, loginApi } from "~/apis/login";
+import { getUserInfoApi, loginApi } from "~/apis/loginApi";
 import Cookies from "js-cookie";
 
 const userStore = {

@@ -133,8 +133,8 @@
 </template>
 
 <script>
-import { getAllBannerApi } from "~/apis/banner";
-import { getIndexDataApi } from "~/apis";
+import { getAllBannerApi } from "@/apis/bannerApi";
+import { getIndexDataApi } from "@/apis/indexApi";
 
 export default {
   data() {

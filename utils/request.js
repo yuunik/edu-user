@@ -3,7 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 // 项目基地址
-const baseURL = "http://localhost:1997";
+const baseURL = "http://192.168.28.93:1997";
 
 // 创建 axios 实例
 const request = axios.create({

@@ -47,8 +47,8 @@
 
 <script>
 import LrForm from "~/components/LrForm";
-import { sendSmsApi } from "~/apis/sms";
-import { registerUserApi } from "../../apis/login";
+import { sendSmsApi } from "~/apis/smsApi";
+import { registerUserApi } from "~/apis/loginApi";
 
 export default {
   layout: "sign",
