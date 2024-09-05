@@ -23,3 +23,16 @@ export const pageCourseApi = (params) =>
     method: "POST",
     data: params.courseQueryVo,
   });
+
+/**
+ * 根据课程id查询课程详情
+ * @param params 课程id
+ * @returns {Promise<Object>} 返回一个Promise对象，解析为包含课程详情和章节详情的对象
+ * @returns {courseInfo} .courseInfo - 课程详情
+ * @returns {chapterList} .chapterList - 章节详情数组
+ */
+export const getCourseInfoApi = (params) =>
+  request({
+    url: `/eduservice/front-end/course/getCourseInfo/${params}`,
+    method: "GET",
+  });
