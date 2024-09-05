@@ -115,7 +115,7 @@
   </div>
 </template>
 <script>
-import { pageTeacherApi } from "../../apis/teacherApi";
+import { pageTeacherApi } from "~/apis/teacherApi";
 
 export default {
   asyncData({ params, error }) {
