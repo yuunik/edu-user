@@ -24,7 +24,20 @@ module.exports = {
           "业界最适合自学、代码量最大、案例最多、实战性最强、技术最前沿的IT系列视频课程！",
       },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {
+        rel: "stylesheet",
+        href: "https://g.alicdn.com/de/prismplayer/2.8.1/skins/default/aliplayer-min.css",
+      },
+    ],
+    script: [
+      {
+        charset: "utf-8",
+        type: "text/javascript",
+        src: "https://g.alicdn.com/de/prismplayer/2.8.1/aliplayer-min.js",
+      },
+    ],
   },
   /*
    ** Customize the progress bar color

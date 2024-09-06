@@ -2,13 +2,17 @@
   <div id="aCoursesList" class="bg-fa of">
     <!-- /课程详情 开始 -->
     <section class="container">
+      <!-- 课程所属分类 开始-->
       <section class="path-wrap txtOf hLh30">
         <a href="#" title class="c-999 fsize14">首页</a>
         \
         <a href="#" title class="c-999 fsize14">课程列表</a>
         \
-        <span class="c-333 fsize14">{{ courseInfo.title }}</span>
+        <span class="c-333 fsize14">{{ courseInfo.subjectParentName }}</span>
+        \
+        <span class="c-333 fsize14">{{ courseInfo.subjectName }}</span>
       </section>
+      <!-- 课程所属分类 结束-->
       <div>
         <article class="c-v-pic-wrap" style="height: 357px">
           <section class="p-h-video-box" id="videoPlay">
@@ -132,7 +136,15 @@
                                 v-for="video in chapter.children"
                                 :key="video.key"
                               >
-                                <a href="#" title>
+                                <a
+                                  href="#"
+                                  title
+                                  @click.prevent="
+                                    $router.push(
+                                      `/player/${video.videoSourceId}`
+                                    )
+                                  "
+                                >
                                   <span class="fr">
                                     <i class="free-icon vam mr10">免费试听</i>
                                   </span>
@@ -141,13 +153,13 @@
                                 </a>
                               </li>
                             </ol>
-                            <Empty v-else />
+                            <Empty v-else description="暂无课程小节视频" />
                           </li>
                         </ul>
                       </menu>
                     </div>
                   </section>
-                  <Empty v-else />
+                  <Empty v-else description="暂无课程大纲" />
                 </div>
                 <!-- /课程大纲 -->
               </article>

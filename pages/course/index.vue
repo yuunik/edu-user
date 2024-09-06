@@ -217,7 +217,7 @@
   </div>
 </template>
 <script>
-import { pageCourseApi } from "~/apis/CourseApi";
+import { pageCourseApi } from "~/apis/courseApi";
 
 export default {
   data() {

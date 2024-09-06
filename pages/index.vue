@@ -47,7 +47,11 @@
                         :alt="course.title"
                       />
                       <div class="cc-mask">
-                        <a href="#" title="开始学习" class="comm-btn c-btn-1"
+                        <a
+                          href="#"
+                          title="开始学习"
+                          class="comm-btn c-btn-1"
+                          @click.prevent="$router.push('/course/' + course.id)"
                           >开始 学习</a
                         >
                       </div>
@@ -57,6 +61,7 @@
                         href="#"
                         :title="course.title"
                         class="course-title fsize18 c- 333"
+                        @click.prevent="$router.push('/course/' + course.id)"
                         >{{ course.title }}</a
                       >
                     </h3>
@@ -96,15 +101,20 @@
                 <li v-for="teacher in teacherList" :key="teacher.id">
                   <section class="i-teach-wrap">
                     <div class="i-teach-pic">
-                      <a :href="teacher.avatar" title="姚晨">
+                      <a
+                        href="#"
+                        :title="teacher.name"
+                        @click.prevent="$router.push('/teacher/' + teacher.id)"
+                      >
                         <img :alt="teacher.name" :src="teacher.avatar" />
                       </a>
                     </div>
                     <div class="mt10 hLh30 txtOf tac">
                       <a
-                        href="/teacher/1"
+                        href="#"
                         :title="teacher.name"
                         class="fsize18 c-666"
+                        @click.prevent="$router.push('/teacher/' + teacher.id)"
                         >{{ teacher.name }}</a
                       >
                     </div>
@@ -188,8 +198,6 @@ export default {
         this.teacherList = teacherList;
         // 保存首页课程数据
         this.courseList = courseList;
-        console.log(courseList);
-        console.log(teacherList);
       }
     },
   },

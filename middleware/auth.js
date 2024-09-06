@@ -6,7 +6,7 @@ const auth = ({ route, redirect, store, app, isClient }) => {
   const token = store.state.userStore.token;
   // 获取当前路径
   const path = route.path;
-  if (path !== "/login") {
+  if (path !== "/login" && path !== "/register") {
     // 如果用户令牌不存在，重定向到登录页面
     if (!token) {
       return redirect("/login");

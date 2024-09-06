@@ -17,6 +17,13 @@ export default {
   data() {
     return {};
   },
+  methods: {
+    gotoLoginOrRegister() {
+      this.$router.push(
+        this.$route.path === "/register" ? "/login" : "/register"
+      );
+    },
+  },
 };
 </script>
 
@@ -45,11 +52,7 @@ export default {
           >
             <i
               class="el-icon-d-arrow-right register-icon"
-              @click="
-                $router.push(
-                  $route.path === '/register' ? '/login' : '/register'
-                )
-              "
+              @click="gotoLoginOrRegister()"
             />
           </el-tooltip>
         </el-form-item>
@@ -115,11 +118,11 @@ export default {
 }
 .register-icon {
   height: 40px;
+  line-height: 40px;
   cursor: pointer;
-}
-.register-icon {
   font-size: 30px;
   margin-left: 5px;
   color: #41b883;
+  vertical-align: top;
 }
 </style>
