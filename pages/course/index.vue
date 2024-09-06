@@ -16,7 +16,11 @@
             <dd class="c-s-dl-li">
               <ul class="clearfix">
                 <li>
-                  <a title="全部" href="#" @click.prevent="() => gotoPage()"
+                  <a
+                    title="全部"
+                    href="#"
+                    @click.prevent="onShowAll"
+                    :class="{ active: isClickAll }"
                     >全部</a
                   >
                 </li>
@@ -217,6 +221,7 @@
   </div>
 </template>
 <script>
+import { mapGetters, mapMutations } from "vuex";
 import { pageCourseApi } from "~/apis/courseApi";
 
 export default {
@@ -233,14 +238,42 @@ export default {
       gmtCreateSort: "",
       priceSort: "",
       courseList: [], // 课程列表
+      isClickAll: false, // 是否点击全部
     };
   },
   created() {
+    const keyword = this.$route.query.keyword;
+    if (keyword) {
+      // 关键字搜索
+      this.searchObj = {
+        courseName: keyword,
+      };
+    }
     // 初始化数据
-    this.gotoPage(1);
+    this.gotoPage();
   },
   mounted() {},
+  computed: {
+    ...mapGetters("courseStore", ["getIsInCoursePage"]),
+  },
+  watch: {
+    getIsInCoursePage: {
+      immediate: true,
+      handler(val) {
+        if (val) {
+          // 若顶部导航栏进入课程页，则重置搜索条件
+          this.searchObj = {
+            courseName: this.$route.query.keyword,
+          };
+          this.gotoPage(1, 8);
+          // 关闭标记
+          this.SET_ISINCOURSEINCOURSE(false);
+        }
+      },
+    },
+  },
   methods: {
+    ...mapMutations("courseStore", ["SET_ISINCOURSEINCOURSE"]),
     // 获取课程信息列表
     async gotoPage(current = 1, pageSize = 8) {
       const { code, data } = await pageCourseApi({
@@ -274,6 +307,8 @@ export default {
       this.oneIndex = index;
       // 重置二级分类索引
       this.twoIndex = -1;
+      // 重置全部按键的激活状态
+      this.isClickAll = false;
       // 获取对应的二级分类
       this.subSubjectList = this.subjectNestedList[index].children;
       // 重新渲染页面
@@ -292,6 +327,8 @@ export default {
       // 保存二级分类索引
       this.twoIndex = index;
       this.oneIndex = -1;
+      // 重置全部按键的激活状态
+      this.isClickAll = false;
       // 重新渲染页面
       this.gotoPage();
     },
@@ -306,6 +343,20 @@ export default {
         sort,
       });
       // 重新渲染页面
+      this.gotoPage();
+    },
+    // 点击全部的事件回调
+    onShowAll() {
+      // 防抖
+      if (this.isClickAll) {
+        return;
+      }
+      this.isClickAll = true;
+      // 重置分类索引
+      this.oneIndex = -1;
+      this.twoIndex = -1;
+      // 重置搜索条件
+      this.searchObj = {};
       this.gotoPage();
     },
   },

@@ -4,7 +4,7 @@
     <header id="header">
       <section class="container">
         <h1 id="logo">
-          <a href="#" title="谷粒学院">
+          <a href="#" title="谷粒学院" @click.prevent="$router.push('/')">
             <img src="~/assets/img/logo.png" width="100%" alt="谷粒学院" />
           </a>
         </h1>
@@ -80,11 +80,15 @@
                 <input
                   type="text"
                   placeholder="输入你想学的课程"
-                  name="queryCourse.courseName"
+                  v-model="courseName"
                   class="form-search"
                   value
                 />
-                <button type="submit" class="s-btn">
+                <button
+                  type="submit"
+                  class="s-btn"
+                  @click.prevent="onSearchCourse"
+                >
                   <em class="icon18">&nbsp;</em>
                 </button>
               </label>
@@ -98,9 +102,7 @@
       </section>
     </header>
     <!-- /公共头引入 -->
-
     <nuxt />
-
     <!-- 公共底引入 -->
     <footer id="footer">
       <section class="container">
@@ -167,6 +169,8 @@ export default {
     return {
       // 退出登录弹窗
       popoverLogoutVisible: false,
+      // 搜索课程的名称
+      courseName: "",
     };
   },
   created() {
@@ -185,6 +189,7 @@ export default {
   methods: {
     ...mapActions("userStore", ["getUserInfoByToken"]),
     ...mapMutations("userStore", ["removeUserInfo", "removeToken"]),
+    ...mapMutations("courseStore", ["SET_ISINCOURSEINCOURSE"]),
     // 退出登录
     logout() {
       // 清除 token
@@ -193,6 +198,18 @@ export default {
       this.removeUserInfo();
       // 路由跳转到登录页面
       this.$router.push("/login");
+    },
+    // 搜索课程
+    onSearchCourse() {
+      // 不在course页面下, 则跳转后搜索
+      if (this.$route.path !== "/course") {
+        return this.$router.push({
+          name: "course",
+          query: { keyword: this.courseName },
+        });
+      }
+      // 打开顶部搜索框是否在课程页面中
+      this.SET_ISINCOURSEINCOURSE(true);
     },
   },
 };

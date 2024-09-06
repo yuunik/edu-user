@@ -8,17 +8,17 @@
         \
         <a href="#" title class="c-999 fsize14">课程列表</a>
         \
-        <span class="c-333 fsize14">{{ courseInfo.subjectParentName }}</span>
+        <span class="c-333 fsize14">{{ courseInfo?.subjectParentName }}</span>
         \
-        <span class="c-333 fsize14">{{ courseInfo.subjectName }}</span>
+        <span class="c-333 fsize14">{{ courseInfo?.subjectName }}</span>
       </section>
       <!-- 课程所属分类 结束-->
       <div>
         <article class="c-v-pic-wrap" style="height: 357px">
           <section class="p-h-video-box" id="videoPlay">
             <img
-              :src="courseInfo.cover"
-              :alt="courseInfo.title"
+              :src="courseInfo?.cover"
+              :alt="courseInfo?.title"
               class="dis c-v-pic"
               width="640px"
               height="357px"
@@ -28,17 +28,19 @@
         <aside class="c-attr-wrap">
           <section class="ml20 mr15">
             <h2 class="hLh30 txtOf mt15">
-              <span class="c-fff fsize24">{{ courseInfo.title }}</span>
+              <span class="c-fff fsize24">{{ courseInfo?.title }}</span>
             </h2>
             <section class="c-attr-jg">
               <span class="c-fff">价格：</span>
-              <b class="c-yellow" style="font-size: 24px"
-                >￥ {{ courseInfo.price }}</b
+              <b class="c-yellow" style="font-size: 24px">
+                {{
+                  courseInfo?.price === 0 ? "免费" : `￥ ${courseInfo?.price}`
+                }}</b
               >
             </section>
             <section class="c-attr-mt c-attr-undis">
               <span class="c-fff fsize14"
-                >主讲： {{ courseInfo.teacherName }}&nbsp;&nbsp;&nbsp;</span
+                >主讲： {{ courseInfo?.teacherName }}&nbsp;&nbsp;&nbsp;</span
               >
             </section>
             <section class="c-attr-mt of">
@@ -48,8 +50,18 @@
               </span>
             </section>
             <section class="c-attr-mt">
-              <a href="#" title="立即观看" class="comm-btn c-btn-3"
-                >立即观 看</a
+              <a
+                href="#"
+                title="立即观看"
+                class="comm-btn c-btn-3"
+                @click.prevent="
+                  $router.push(
+                    `/player/${chapterList[0].children[0].videoSourceId}`
+                  )
+                "
+                >{{
+                  Number(courseInfo?.price) === 0 ? "立即观看" : "立即购买"
+                }}</a
               >
             </section>
           </section>
@@ -61,7 +73,7 @@
               <aside>
                 <span class="c-fff f-fM">购买数</span>
                 <br />
-                <h6 class="c-fff f-fM mt10">{{ courseInfo.buyCount }}</h6>
+                <h6 class="c-fff f-fM mt10">{{ courseInfo?.buyCount }}</h6>
               </aside>
             </li>
             <li>
@@ -69,7 +81,7 @@
               <aside>
                 <span class="c-fff f-fM">课时数</span>
                 <br />
-                <h6 class="c-fff f-fM mt10">{{ courseInfo.lessonNum }}</h6>
+                <h6 class="c-fff f-fM mt10">{{ courseInfo?.lessonNum }}</h6>
               </aside>
             </li>
             <li>
@@ -77,7 +89,7 @@
               <aside>
                 <span class="c-fff f-fM">浏览数</span>
                 <br />
-                <h6 class="c-fff f-fM mt10">{{ courseInfo.viewCount }}</h6>
+                <h6 class="c-fff f-fM mt10">{{ courseInfo?.viewCount }}</h6>
               </aside>
             </li>
           </ol>
@@ -101,7 +113,7 @@
                   </h6>
                   <div class="course-txt-body-wrap">
                     <section class="course-txt-body">
-                      <p v-html="courseInfo.description"></p>
+                      <p v-html="courseInfo?.description"></p>
                     </section>
                   </div>
                 </div>
