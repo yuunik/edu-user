@@ -147,7 +147,7 @@
                             >
                               <li
                                 class="lh-menu-second ml30"
-                                v-for="video in chapter.children"
+                                v-for="(video, index) in chapter.children"
                                 :key="video.key"
                               >
                                 <a
@@ -159,7 +159,7 @@
                                     )
                                   "
                                 >
-                                  <span class="fr">
+                                  <span class="fr" v-show="index < 2">
                                     <i class="free-icon vam mr10">免费试听</i>
                                   </span>
                                   <em class="lh-menu-i-2 icon16 mr5">&nbsp;</em
