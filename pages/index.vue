@@ -45,6 +45,8 @@
                         :src="course.cover"
                         class="img-responsive"
                         :alt="course.title"
+                        width="267.5px"
+                        height="149.2px"
                       />
                       <div class="cc-mask">
                         <a

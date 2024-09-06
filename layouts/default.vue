@@ -57,12 +57,19 @@
                   userInfo.nickname
                 }}</span>
               </a>
-              <a
-                href="javascript:void(0);"
-                title="退出"
-                @click="logout()"
-                class="ml5"
-                >退 出</a
+              <Popconfirm
+                placement="bottom"
+                width="200"
+                v-model="popoverLogoutVisible"
+                title="是否确认退出登录？"
+                @confirm="logout"
+                ><a
+                  href="javascript:void(0);"
+                  title="退出"
+                  class="ml5"
+                  slot="reference"
+                  >退 出</a
+                ></Popconfirm
               >
             </li>
             <!-- /未登录显示第1 li；登录后显示第2，3 li -->
@@ -74,6 +81,7 @@
                   type="text"
                   placeholder="输入你想学的课程"
                   name="queryCourse.courseName"
+                  class="form-search"
                   value
                 />
                 <button type="submit" class="s-btn">
@@ -118,10 +126,10 @@
                 <a href="#" title="帮助中心" target="_blank">帮助中心</a>|
                 <a href="#" title="资源下载" target="_blank">资源下载</a>|
                 <span>服务热线：010-56253825(北京) 0755-85293825(深圳)</span>
-                <span>Email：info@atguigu.com</span>
+                <span>Email：chorria.zhou@gmail.com</span>
               </section>
               <section class="b-f-link mt10">
-                <span>©2018课程版权均归谷粒学院所有 京ICP备17055252号</span>
+                <span>©2024课程版权均归yuunik所有 京ICP备17055252号</span>
               </section>
             </section>
           </section>
@@ -145,16 +153,21 @@
   </div>
 </template>
 <script>
+import { mapActions, mapState, mapMutations } from "vuex";
+import Cookies from "js-cookie";
+import { Popconfirm } from "element-ui";
 import "~/assets/css/reset.css";
 import "~/assets/css/theme.css";
 import "~/assets/css/global.css";
 import "~/assets/css/web.css";
-import { mapActions, mapState } from "vuex";
-import Cookies from "js-cookie";
 
 export default {
+  components: { Popconfirm },
   data() {
-    return {};
+    return {
+      // 退出登录弹窗
+      popoverLogoutVisible: false,
+    };
   },
   created() {
     // 获取路劲参数 token
@@ -171,8 +184,29 @@ export default {
   },
   methods: {
     ...mapActions("userStore", ["getUserInfoByToken"]),
+    ...mapMutations("userStore", ["removeUserInfo", "removeToken"]),
     // 退出登录
-    logout() {},
+    logout() {
+      // 清除 token
+      this.removeToken();
+      // 清除用户信息
+      this.removeUserInfo();
+      // 路由跳转到登录页面
+      this.$router.push("/login");
+    },
   },
 };
 </script>
+<style scoped>
+.form-search {
+  transition: 0.25s all linear;
+
+  &:hover {
+    border-color: #ff6700;
+  }
+
+  &:focus {
+    border-color: #41b883;
+  }
+}
+</style>

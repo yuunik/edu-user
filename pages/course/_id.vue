@@ -20,6 +20,8 @@
               :src="courseInfo.cover"
               :alt="courseInfo.title"
               class="dis c-v-pic"
+              width="640px"
+              height="357px"
             />
           </section>
         </article>
@@ -216,11 +218,11 @@
   </div>
 </template>
 <script>
-import { Empty } from "element-ui";
+import { Empty, Image } from "element-ui";
 import { getCourseInfoApi } from "~/apis/courseApi";
 
 export default {
-  components: { Empty },
+  components: { Empty, Image },
   asyncData({ params, error }) {
     return getCourseInfoApi(params.id).then(
       ({ code, data: { courseInfo, chapterList } }) => {

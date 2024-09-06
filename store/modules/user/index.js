@@ -58,6 +58,7 @@ const userStore = {
     // 移除用户信息
     removeUserInfo(state) {
       state.userInfo = {};
+      Cookies.remove("user_info");
     },
     // 设置用户令牌
     setToken(state, token) {
@@ -65,6 +66,7 @@ const userStore = {
     },
     removeToken(state) {
       state.token = "";
+      Cookies.remove("token");
     },
   },
   getters: {
