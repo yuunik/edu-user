@@ -3,7 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 // 项目基地址
-const baseURL = "http://192.168.28.93:1997";
+const baseURL = "http://192.168.28.187:1997";
 
 // 创建 axios 实例
 const request = axios.create({
@@ -17,7 +17,8 @@ request.interceptors.request.use(
     // 若 cookie 中有 token，则在请求头中添加 token
     const token = Cookies.get("token");
     if (token) {
-      config.headers["token"] = token;
+      // 若 token 存在，则在请求头的 Authorization 中添加 token
+      config.headers["Authorization"] = token;
     }
     return config;
   },
