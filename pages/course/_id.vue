@@ -52,11 +52,13 @@
             <section class="c-attr-mt">
               <a
                 href="#"
-                title="立即观看"
+                :title="
+                  Number(courseInfo?.price) === 0 ? '立即观看' : '立即购买'
+                "
                 class="comm-btn c-btn-3"
                 @click.prevent="
-                  $router.push(
-                    `/player/${chapterList[0].children[0].videoSourceId}`
+                  onViewOrBuyCourse(
+                    Number(courseInfo?.price) === 0 ? '立即观看' : '立即购买'
                   )
                 "
                 >{{
@@ -232,6 +234,7 @@
 <script>
 import { Empty, Image } from "element-ui";
 import { getCourseInfoApi } from "~/apis/courseApi";
+import { createOrder } from "~/apis/orderApi";
 
 export default {
   components: { Empty, Image },
@@ -242,10 +245,30 @@ export default {
           return {
             courseInfo,
             chapterList,
+            id: params.id,
           };
         }
       }
     );
+  },
+  methods: {
+    async onViewOrBuyCourse(val) {
+      if (val === "立即购买") {
+        // 生成课程订单
+        const {
+          code,
+          data: { orderNo },
+        } = await createOrder({ courseId: this.id, payType: 1 });
+        if (code === 20000) {
+          // 跳转至订单详情页面
+          this.$router.push(`/order/${orderNo}`);
+        }
+      } else {
+        $router.push(
+          `/player/${this.chapterList[0].children[0].videoSourceId}`
+        );
+      }
+    },
   },
 };
 </script>
