@@ -66,9 +66,15 @@
         <div class="fr" id="AgreeDiv">
           <label for="Agree"
             ><p class="on">
-              <input type="checkbox" checked="checked" />我已阅读并同意<a
-                href="javascript:"
-                target="_blank"
+              <input
+                type="checkbox"
+                v-model="isChecked"
+                style="
+                  vertical-align: middle;
+                  margin-right: 5px;
+                  cursor: pointer;
+                "
+              />我已阅读并同意<a href="javascript:" target="_blank"
                 >《谷粒学院购买 协议》</a
               >
             </p></label
@@ -90,7 +96,7 @@
         </div>
         <input name="score" value="0" type="hidden" id="usedScore" />
         <button class="fr redb" type="button" id="submitPay" @click="toPay()">
-          去支 付
+          去 支 付
         </button>
         <div class="clear"></div>
       </div>
@@ -100,6 +106,7 @@
 
 <script>
 import { getOrderInfo } from "~/apis/orderApi";
+
 export default {
   name: "OrderInfo",
   asyncData({ params }) {
@@ -111,10 +118,20 @@ export default {
       }
     });
   },
+  data() {
+    return {
+      isChecked: true,
+    };
+  },
   methods: {
     // 去支付
     toPay() {
-      console.log("toPay");
+      if (!this.isChecked) {
+        // 未同意协议
+        return this.$message.info("请先阅读并同意《谷粒学院购买 协议》");
+      }
+      // 跳转至支付页面
+      this.$router.push("/pay/" + this.order.orderNo);
     },
   },
 };

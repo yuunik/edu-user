@@ -171,6 +171,7 @@ import "~/assets/css/swiper-3.3.1.min.css";
 import "~/assets/css/pages-weixinpay.css";
 
 export default {
+  name: "Layout",
   components: { Popconfirm },
   data() {
     return {

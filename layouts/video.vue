@@ -10,9 +10,13 @@
     </div>
   </div>
 </template>
+
 <script>
-export default {};
+export default {
+  name: "Video",
+};
 </script>
+
 <style>
 html,
 body {

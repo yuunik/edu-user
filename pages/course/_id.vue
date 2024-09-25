@@ -237,8 +237,9 @@ import { getCourseInfoApi } from "~/apis/courseApi";
 import { createOrder } from "~/apis/orderApi";
 
 export default {
+  name: "CourseInfo",
   components: { Empty, Image },
-  asyncData({ params, error }) {
+  asyncData({ params }) {
     return getCourseInfoApi(params.id).then(
       ({ code, data: { courseInfo, chapterList } }) => {
         if (code === 20000) {
@@ -258,10 +259,14 @@ export default {
         const {
           code,
           data: { orderNo },
+          message,
         } = await createOrder({ courseId: this.id, payType: 1 });
         if (code === 20000) {
           // 跳转至订单详情页面
           this.$router.push(`/order/${orderNo}`);
+        } else {
+          // 提示错误信息
+          this.$message.error(message);
         }
       } else {
         $router.push(

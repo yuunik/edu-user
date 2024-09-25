@@ -1,6 +1,7 @@
 // 封装axios请求
 import axios from "axios";
 import Cookies from "js-cookie";
+import { Message } from "element-ui";
 
 // 项目基地址
 const baseURL = "http://192.168.28.187:1997";
@@ -14,7 +15,7 @@ const request = axios.create({
 // 请求拦截器
 request.interceptors.request.use(
   (config) => {
-    // 若 cookie 中有 token，则在请求头中添加 token
+    // 获取 token
     const token = Cookies.get("token");
     if (token) {
       // 若 token 存在，则在请求头的 Authorization 中添加 token
@@ -31,8 +32,22 @@ request.interceptors.request.use(
 // 响应拦截器
 request.interceptors.response.use(
   (response) => {
-    // 对响应数据做点什么
-    return response.data;
+    if (response.data.code === 3506) {
+      // 登录失效
+      window.href.href = "/login";
+    } else {
+      if (response.data.code !== 20000 && response.data.code !== 1997) {
+        // 不是成功的响应, 也不是微信支付中的响应, 则显示错误信息
+        Message({
+          message: response.data.message || "Error",
+          type: "error",
+          duration: 5 * 1000,
+        });
+      } else {
+        // 对响应数据做点什么
+        return response.data;
+      }
+    }
   },
   (error) => {
     // 请求超时提示

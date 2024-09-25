@@ -4,6 +4,9 @@ import { request } from "~/utils";
 // 模块基础路径
 const baseUrl = "/orderservice/order";
 
+// 支付日志基础路径
+const payLogUrl = "/orderservice/payLog";
+
 /**
  * 创建订单
  * @param {Object} params - 参数对象
@@ -30,5 +33,27 @@ export const createOrder = (params) =>
 export const getOrderInfo = (params) =>
   request({
     url: `${baseUrl}/getOrderInfo/${params}`,
+    method: "GET",
+  });
+
+/**
+ * 生成微信支付二维码
+ * @param params 订单编号
+ * @returns {*}
+ */
+export const createWeChatPayCode = (params) =>
+  request({
+    url: `${payLogUrl}/createNative/${params}`,
+    method: "GET",
+  });
+
+/**
+ * 查询微信支付状态
+ * @param params 订单编号
+ * @returns {*}
+ */
+export const queryPayStatus = (params) =>
+  request({
+    url: `${payLogUrl}/queryWeChatPayStatus/${params}`,
     method: "GET",
   });
