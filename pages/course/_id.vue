@@ -53,16 +53,22 @@
               <a
                 href="#"
                 :title="
-                  Number(courseInfo?.price) === 0 ? '立即观看' : '立即购买'
+                  Number(courseInfo?.price) === 0 || isBuy
+                    ? '立即观看'
+                    : '立即购买'
                 "
                 class="comm-btn c-btn-3"
                 @click.prevent="
                   onViewOrBuyCourse(
-                    Number(courseInfo?.price) === 0 ? '立即观看' : '立即购买'
+                    Number(courseInfo?.price) === 0 || isBuy
+                      ? '立即观看'
+                      : '立即购买'
                   )
                 "
                 >{{
-                  Number(courseInfo?.price) === 0 ? "立即观看" : "立即购买"
+                  Number(courseInfo?.price) === 0 || isBuy
+                    ? "立即观看"
+                    : "立即购买"
                 }}</a
               >
             </section>
@@ -161,7 +167,7 @@
                                     )
                                   "
                                 >
-                                  <span class="fr" v-show="index < 2">
+                                  <span class="fr" v-show="index < 2 && !isBuy">
                                     <i class="free-icon vam mr10">免费试听</i>
                                   </span>
                                   <em class="lh-menu-i-2 icon16 mr5">&nbsp;</em
@@ -232,21 +238,22 @@
   </div>
 </template>
 <script>
-import { Empty, Image } from "element-ui";
+import { Empty } from "element-ui";
 import { getCourseInfoApi } from "~/apis/courseApi";
 import { createOrder } from "~/apis/orderApi";
 
 export default {
   name: "CourseInfo",
-  components: { Empty, Image },
+  components: { Empty },
   asyncData({ params }) {
     return getCourseInfoApi(params.id).then(
-      ({ code, data: { courseInfo, chapterList } }) => {
+      ({ code, data: { courseInfo, chapterList, isBuy } }) => {
         if (code === 20000) {
           return {
             courseInfo,
             chapterList,
-            id: params.id,
+            courseId: params.id,
+            isBuy,
           };
         }
       }
@@ -260,7 +267,7 @@ export default {
           code,
           data: { orderNo },
           message,
-        } = await createOrder({ courseId: this.id, payType: 1 });
+        } = await createOrder({ courseId: this.courseId, payType: 1 });
         if (code === 20000) {
           // 跳转至订单详情页面
           this.$router.push(`/order/${orderNo}`);

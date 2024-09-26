@@ -13,7 +13,7 @@ export default {
   data() {
     return {};
   },
-  asyncData({ params, error }) {
+  asyncData({ params }) {
     return getVideoAuthApi(params.videoId).then(({ code, data }) => {
       if (code === 20000) {
         return {

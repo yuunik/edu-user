@@ -19,7 +19,7 @@ request.interceptors.request.use(
     const token = Cookies.get("token");
     if (token) {
       // 若 token 存在，则在请求头的 Authorization 中添加 token
-      config.headers["Authorization"] = token;
+      config.headers.Authorization = token;
     }
     return config;
   },
